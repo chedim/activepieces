@@ -154,7 +154,7 @@ export const Property = {
       ? ObjectProperty<true>
       : ObjectProperty<false>;
   },
-  Dropdown<T, R extends boolean = boolean>(
+    Dropdown<T, R extends boolean = boolean>(
     request: Properties<DropdownProperty<T, R>>
   ): R extends true ? DropdownProperty<T, true> : DropdownProperty<T, false> {
     return {
@@ -237,11 +237,11 @@ export const Property = {
   },
   Custom<R extends boolean>(
     request: Omit<Properties<CustomProperty<R>>, 'code'> & {
-      /** 
+      /**
        * This is designed to be self-contained and operates independently of any
        * external libraries or imported dependencies. All necessary logic and
        * functionality are implemented within this function itself.
-       * 
+       *
        * You can return a cleanup function that will be called when the component is unmounted in the frontend.
        * */
       code: ((ctx: CustomPropertyCodeFunctionParams) => (()=>void) | void)
