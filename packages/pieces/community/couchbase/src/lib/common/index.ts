@@ -12,6 +12,9 @@ export const apiGet = (auth: PiecePropValueSchema<typeof couchbaseAuth>, stateme
 export const apiPost = (auth: PiecePropValueSchema<typeof couchbaseAuth>, statement: string, args: string[] = []):HttpRequest => apiQuery(HttpMethod.POST, auth, statement, args);
 
 const apiQuery = (method: HttpMethod, auth: PiecePropValueSchema<typeof couchbaseAuth>, statement: string, args: string[] = []):HttpRequest => {
+  if (auth.scope == undefined || auth.scope.trim() == "") {
+    auth.scope = "_default";
+  }
 
   const params: QueryParams = {
     statement: statement,
